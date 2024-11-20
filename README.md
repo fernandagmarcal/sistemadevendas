@@ -1,7 +1,7 @@
 # Mercadinho - Sistema de Gestão
 
 **Descrição:**  
-O **Mercado Malfeito** é um sistema desenvolvido para atender as necessidades de um mercado familiar que possui pouca familiaridade com tecnologia. O objetivo do sistema é modernizar a gestão do mercado, oferecendo soluções para o controle de estoque, fluxo de caixa, vendas e cadastro de produtos. O sistema visa substituir o antigo método de anotações manuais e facilitar a administração de vendas e estoque.
+O **Mercadinho** é um sistema desenvolvido para atender as necessidades de um mercado familiar que possui pouca familiaridade com tecnologia. O objetivo do sistema é modernizar a gestão do mercado, oferecendo soluções para o controle de estoque, fluxo de caixa, vendas e cadastro de produtos. O sistema visa substituir o antigo método de anotações manuais e facilitar a administração de vendas e estoque.
 
 **Principais Funcionalidades:**
 
