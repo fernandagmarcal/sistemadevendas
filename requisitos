@@ -1,0 +1,186 @@
+---------------------------
+MERCADINHO
+---------------------------
+
+- mercado familiar
+
+- quer acabar com o caderno de anotações (fiado), aceita somente pix
+
+- dificuldade em alterar preço
+
+- falta gerenciamento de estoque
+
+- falta controle de fluxo de caixa (fechamento de caixa e vendas do dia)
+
+- apenas 1 caixa
+
+- mercado tem dois tipos de produtos
+alimentos/utensilios e eltrodomesticos (campo a mais: garantia)
+
+
+---------- REQUISITOS ------------
+
+CAIXA * cliente imagina que o funcionário ABRE O CAIXA (msg de confirmação) e o funcionário INSERE VALOR DO SUPRIMENTO DO CAIXA, a partir disso o sistema MOSTRA MENU DA VENDA
+
+CADASTRO * cadastro p/ cada item alimento/utensílios: cod prod., nome prod., valor unitário prod., validade do prod. em dias, estoque prod.
+
+CADASTRO * cadastro p/ cada item eletrodomesticos: cod eletro, nome eletro, valor unitário eletro, garantia eletro, estoque eletro
+
+CONSULTA * consulta de produtos que mostra lista de produtos, SE POSSIVEL POR PAGINAS, pesquisa por palavra chave (resposta: mostrar tds os dados do(s) produto(s) ou sem produto cadastr.)
+
+REMOVE CADASTRO * remover produto/desativar cadastro
+
+MENU VENDAS * 
+- pesquisa produto ou digita codigo, depois digita quantidade, depois insere na lista da venda
+- cada vez que adiciona itens vai somando no total de acordo com o valor do produto
+- comando cancelar item
+- comando cancelar venda
+- comando fechar conta: apresentar valor total
+- requisito de agrupar itens de mesmo codigo e colocar na ordem (ex.: cerveja/leite/cerveja)
+- finalizou a compra REAJUSTA ESTOQUE e adiciona no saldo do caixa e dps pergunta se deseja fechar o caixa ou continuar vendendo
+- apresentar após o fechamento: começou com quanto, ganhou quanto, mostrar saldO
+
+RELATÓRIO * relatório de produtos próximos do vencimento (opções: 90 dias, 60 dias, 30 dias, 10 dias, 5 dias, 1 dia)
+
+RELATÓRIO * relatório de produtos para verificar estoque geral e detalhado (opções: 50 un, 30 un, 10 un, 0 un)
+
+--------------------------------------
+
+NAVEGAÇÃO DOS MENUS
+CASO 1: PRINCIPAL > GERENCIAL > CADASTRAR PRODUTOS > CADASTRO ALIMENTOS E UTENSILIOS / CADASTRO ELETRODOMESTICOS
+CASO 2: PRINCIPAL > GERENCIAL > CONSULTAR PRODUTOS > CONSULTA DETALHADA / CONSULTA LISTA / EDITAR ESTOQUE / DESATIVAR PRODUTO
+CASO 3: PRINCIPAL > GERENCIAL > RELATÓRIOS > RELATÓRIO DE PRODUTOS PRÓXIMOS AO VENCIMENTO / RELATÓRIO DE PRODUTOS PARA VERIFICAR ESTOQUE
+CASO 4: PRINCIPAL > CAIXA > ABRIR CAIXA
+
+Menu PRINCIPAL:
+1 - Gerencial
+2 - Caixa
+3 - Fechar sistema (exibe msg sistema está sendo finalizado)
+
+	
+
+	Menu GERENCIAL:
+	1 - Cadastrar produtos
+	2 - Consultar produtos
+	3 - Relatórios
+	4 - Voltar para menu PRINCIPAL
+		
+		**CASO 1
+		Menu CADASTRAR PRODUTOS:
+		msg: 'Qual categoria deseja cadastrar?'
+		1 - Alimento/utensílios
+		2 - Eletrodomésticos
+		3 - Voltar para menu GERENCIAL
+		4 - Voltar para menu PRINCIPAL
+
+			Menu 1 CADASTRO ALIMENTOS/UTENSILIOS:
+			msg: 'CADASTRO ALIMENTOS/UTENSILIOS'
+			'Digite 'SAIR' a qualquer momento para sair do cadastro e voltar para MENU CADASTRO DE PRODUTOS'
+			*Aqui o sistema pergunta cada dado exigido no cadastro de Alimento/utensílios que está nos requisitos e considera voltar para menu de CADASTRAR DE PRODUTOS após o usuário digitar 'sair' ou 'SAIR'*
+			*Caso opte por SAIR, exibe msg: 'Operação cancelada, voltando ao menu de CADASTRAR PRODUTOS'
+			Após finalizar o cadastro exibe msg: 'Cadastro finalizado, voltando ao menu CADASTRAR PRODUTOS'
+			e volta ao menu CADASTRAR PRODUTOS
+
+			Menu 2 CADASTRO ALIMENTOS/UTENSILIOS:
+			msg: 'CADASTRO ELETRODOMESTICOS'
+			'Digite 'SAIR' a qualquer momento para sair do cadastro e voltar para MENU CADASTRO DE PRODUTOS'
+			*Aqui o sistema pergunta cada dado exigido no cadastro de eletrodomesticos que está nos requisitos e considera voltar para menu de CADASTRAR DE PRODUTOS após o usuário digitar 'sair' ou 'SAIR'*
+			*Caso opte por 'SAIR', exibe msg: 'Operação cancelada, voltando ao menu de CADASTRAR PRODUTOS'
+			*Após cadastrar o produto, pergunta se deseja cadastrar mais um produto ou 'SAIR' (sai do WHILE com 'SAIR' ou 'sair')
+
+		** CASO 2
+		Menu CONSULTAR PRODUTOS:
+		msg: 'Escolha o tipo de consulta'
+		1 - Consulta detalhada
+		2 - Consulta lista
+		3 - Editar estoque
+		4 - Desativar produto
+		5 - Voltar para menu GERENCIAL
+		6 - Voltar para menu PRINCIPAL
+
+			Menu 1 CONSULTA DETALHADA:
+			*Aqui a consulta deve ser por código do produto e o sistema exibe todos os dados do cadastro referente ao código pesquisado
+			msg: 'Digite o código do produto ou 'SAIR' para voltar ao menu de de CONSULTAR PRODUTOS'
+			*Deve considerar 'SAIR' ou 'sair' para voltar ao menu CONSULTAR PRODUTOS
+			*Se o usuário não escolher sair, deve exibir os dados do produto por código
+			*Após exibir dados do produto, pergunta se deseja pesquisar mais um código ou 'SAIR' (sai do WHILE com 'SAIR' ou 'sair')
+
+			Menu 2 CONSULTA LISTA:
+			*Aqui a consulta deve ser por palavra chave, usuário digita palavra chave e o sistema busca todos os produtos que possui essa palavra chave e exibe na tela a lista dos produtos
+			msg: 'Digite a palavra chave para a pesquisa ou SAIR para voltar ao menu de CONSULTAR PRODUTOS'
+			*Deve considerar 'SAIR' ou 'sair' para voltar ao menu CONSULTAR PRODUTOS
+			*Se o usuário não escolher sair, deve exibir a lista de todos os produtos referentes aquela palavra chave
+			*Após exibir a lista cada um com código do prod. e nome, pergunta se deseja pesquisar mais uma palavra chave 'sair' (sai do WHILE com 'SAIR' ou 'sair')
+
+			Menu 3 EDITAR ESTOQUE:
+			*Aqui a consulta deve ser por ser por código do produto, usuário digita o código e o sistema busca o produto
+			msg: 'Digite o código do produto que deseja alterar o estoque ou 'SAIR' para voltar ao menu de CONSULTAR PRODUTOS
+			*Exibe código, nome e estoque atual do produto e depois sistema pede novo estoque ou 'SAIR'
+			msg: 'Digite o novo estoque do produto ou 'SAIR' para voltar ao menu CONSULTAR PRODUTOS
+			*Se digitar numero do novo estoque, deve alterar no cadastro, colocar o novo estoque e por fim perguntar se deseja continuar editando estoque (sai do WHILE com 'SAIR' ou 'sair')
+
+			Menu 4 DESATIVAR PRODUTO:
+			*Aqui a consulta deve ser por ser por código do produto, usuário digita o código e o sistema busca o produto
+			msg: 'Digite o código do produto que deseja inativar ou 'SAIR' para voltar ao menu de CONSULTAR PRODUTOS
+			*Exibe dados do produto e depois sistema pergunta se deseja realmente inativar o produto ou 'SAIR'
+			msg: 'Deseja inativar esse produto? (S/N)
+			*Se S: inativar produto e adicionar '[PRODUTO DESATIVADO]' no nome no cadastro,e por fim perguntar se deseja continuar desativando produto (sai do WHILE com 'SAIR' ou 'sair')
+			*Se N: Voltar ao menu CONSULTAR PRODUTOS
+
+		**CASO 3
+		Menu RELATÓRIOS:
+		msg: 'Escolha o tipo de relatório'
+		1 - VENCIMENTO PRODUTOS
+		2 - ESTOQUE PRODUTOS 
+		3 - Voltar para menu GERENCIAL
+		4 - Voltar para menu PRINCIPAL
+
+			Menu 1 VENCIMENTO PRODUTOS:
+			*Mostra lista de todos os produtos com código do produto, nome e data de vencimento
+			msg: 'Digite 'SAIR' para voltar ao menu de RELATÓRIOS'
+			*Deve considerar 'SAIR' ou 'sair' para voltar ao menu RELATÓRIOS
+			*Se o usuário não escolher sair, deve exibir os dados
+			*Após exibir esses dados, pergunta se deseja pesquisar mais ou 'SAIR' (sai do WHILE com 'SAIR' ou 'sair')
+
+			Menu 1 ESTOQUE PRODUTOS:
+			*Mostra lista de todos os produtos com código do produto, nome, quantidade do estoque
+			msg: 'Digite 'SAIR' para voltar ao menu de RELATÓRIOS'
+			*Deve considerar 'SAIR' ou 'sair' para voltar ao menu RELATÓRIOS
+			*Se o usuário não escolher sair, deve exibir os dados
+			*Após exibir esses dados, pergunta se deseja pesquisar mais ou 'SAIR' (sai do WHILE com 'SAIR' ou 'sair')
+
+	Menu CAIXA:
+	1 - Abrir Caixa
+	2 - Voltar para menu PRINCIPAL
+
+		**CASO 4
+		Menu ABRIR CAIXA:
+		msg: 'Deseja abrir caixa? (S/N)'
+		*Se abrir caixa, seguir procedimento do requisito de informal valor inicial
+		*Se não, volta para menu CAIXA
+		msg: 'Informe o valor do suprimento'
+		msg: 'Abrindo caixa'
+		* Inicia menu VENDAS (seguir requisitos menu vendas)
+		
+
+			Menu VENDAS:
+			* exibir esse menu abaixo da lista de itens da venda toda vez que add um produto ou faz ação
+			msg: 'Venda número: ' e 'Saldo Caixa: ' e colocar qual venda é, e qual saldo partindo do saldo inicial informado e toda vez que finalizar venda a próxima soma +1, ou seja começa na venda 001.
+			1 - ADICIONAR PRODUTO
+				- pesquisa produto ou digita codigo, depois digita quantidade, depois insere na lista da venda que é atualizada e exibida cada vez que add um produto (exibe código, nome, quantidade, valor unitário e 				valor total do produto (quantidade x valor unitário), só deixa add produto se estiver no estoque
+				- ter tratamento de erro exemplo 'produto não cadastrado' e voltar para while de add porduto
+				- cada vez que adiciona itens vai somando no total de acordo com o valor do produto
+				- requisito de agrupar itens de mesmo codigo e colocar na ordem (ex.: cerveja/leite/cerveja)
+			2 - CANCELAR ITEM 
+				- pergunta o código do item a ser cancelado e faz a confirmação se deseja remover ele da lista da venda, se sim, remove todos os produtos com aquele código e lista exibindo lista de itens e valor total da 				compra atualizado,  depois volta pra o menu de VENDAS. Se não, cancela ação e continuar venda.
+			3 - CANCELAR VENDA
+				- pergunta de confirmação se realmente deseja cancelar a venda, se sim, exibe 'Venda cancelada' volta ao menu VENDAS, considerando que a ultima numeração de venda não foi usada. Se não, cancelar ação e 			        continua venda.
+			4 - FINALIZAR VENDA
+				- pergunta se deseja finalizar compra, se sim, finalizou a compra REAJUSTA ESTOQUE e adiciona no saldo do caixa, Se não, cancelar ação e continua venda
+				- pergunta se deseja fechar o caixa ou continuar vendendo, se fechar - apresentar após o fechamento: começou com quanto, ganhou quanto, mostrar saldo. se não fechar, cancela ação e volta menu venda
+
+		 	5 - Voltar para menu CAIXA
+
+			
+
+	
